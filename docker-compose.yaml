@@ -1,0 +1,29 @@
+services:
+  scrape-tool-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: localhost/scrape-tool-api:latest
+    container_name: scrape-tool-api
+    ports:
+      - "28001:8000"
+    volumes:
+      - ./data:/app/data
+      - ./log:/app/log
+    env_file:
+      - .env.docker
+    restart: always
+
+  scrape-tool-webui:
+    build:
+      context: .
+      dockerfile: web/Dockerfile
+    image: localhost/scrape-tool-webui:latest
+    container_name: scrape-tool-webui
+    ports:
+      - "23001:3000"
+    env_file:
+      - .env.docker
+    depends_on:
+      - scrape-tool-api
+    restart: always

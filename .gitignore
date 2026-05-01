@@ -1,0 +1,60 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+.venv
+venv/
+ENV/
+
+# Environment Variables
+.env
+.env.*
+!.env.sample
+
+# IDEs
+.vscode/
+.idea/
+
+# Project Specific
+data/*
+!data/.gitkeep
+log/*
+!log/.gitkeep
+tmp/*
+!tmp/.gitkeep
+sample/*
+!sample/.gitkeep
+.agent/
+.pytest_cache/
+
+# Web / Node
+node_modules/
+web/node_modules/
+web/dist/
+web/.eslintcache
+web/npm-debug.log*
+web/yarn-debug.log*
+web/yarn-error.log*
+
+# Docker
+.docker_data/
