@@ -18,20 +18,23 @@ export default defineConfig(({ mode }) => {
     ],
     envDir: '../', // Look for .env in root
     server: {
-      host: '0.0.0.0', // Standard for dev container/ssh
+      host: '0.0.0.0',
       port: 3000,
       strictPort: true,
       allowedHosts: true,
       proxy: {
         '/api': {
-          target: rootEnv.INTERNAL_API_URL || rootEnv.API_ROOT || `http://0.0.0.0:${rootEnv.API_PORT || 8000}`,
+          target: rootEnv.INTERNAL_API_URL || 
+                  (rootEnv.API_ROOT?.includes('scrape.geonw.local') ? 'http://scrape-tool-api:8000' : rootEnv.API_ROOT) || 
+                  `http://scrape-tool-api:8000`,
+          changeOrigin: true,
           secure: false,
           ws: true,
           configure: (proxy, _options) => {
             proxy.on('error', (err, _req, _res) => {
               console.log('Vite Proxy Error:', err);
             });
-            proxy.on('proxyReq', (proxyReq, req, _res) => {
+            proxy.on('proxyReq', (_, req, _res) => {
               console.log(`[Vite Proxy] Forwarding ${req.method} ${req.url} to Target`);
             });
             proxy.on('proxyRes', (proxyRes, req, _res) => {
