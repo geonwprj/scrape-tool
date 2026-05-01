@@ -11,8 +11,8 @@ COPY web/package.json web/package-lock.json ./
 RUN npm install
 
 # Copy web source and global config
+# Copy web source
 COPY web ./
-COPY .env ./..
 
 # Expose the WebUI port
 EXPOSE 3000
