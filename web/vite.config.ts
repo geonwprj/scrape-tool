@@ -24,9 +24,7 @@ export default defineConfig(({ mode }) => {
       allowedHosts: true,
       proxy: {
         '/api': {
-          target: rootEnv.INTERNAL_API_URL || 
-                  (rootEnv.API_ROOT?.includes('scrape.geonw.local') ? 'http://scrape-tool-api:8000' : rootEnv.API_ROOT) || 
-                  `http://scrape-tool-api:8000`,
+          target: rootEnv.INTERNAL_API_URL || rootEnv.API_ROOT || 'http://localhost:8000',
           changeOrigin: true,
           secure: false,
           ws: true,
